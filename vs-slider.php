@@ -32,3 +32,20 @@
     if ( ! defined( 'ABSPATH' ) ) {
         exit; // Exit if accessed directly.
     }
+
+    if ( ! class_exists( 'VS_Slider' ) ) {
+        class VS_Slider {
+
+            public function __construct() {
+
+
+
+            }
+
+        }
+    }
+
+    if ( class_exists( 'VS_Slider' ) ) {
+        $vs_slider = new VS_Slider();
+    }
+    
