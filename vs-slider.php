@@ -50,10 +50,31 @@
 
             }
 
+            public static function activate() {
+                
+                //flush_rewrite_rules();
+                update_option('rewrite_rules', ''); // This method is similar to the function above, but the course author (Marcelo Xavier Vieira) claims that it works better.
+
+            }
+
+            public static function deactivate() {
+                flush_rewrite_rules();
+            }    
+
+            public static function uninstall() {
+                // Uninstallation code here...
+            }
+
         }
     }
 
     if ( class_exists( 'VS_Slider' ) ) {
+
+        register_activation_hook( __FILE__, array( 'VS_Slider', 'activate' ) );
+        register_deactivation_hook( __FILE__, array( 'VS_Slider', 'deactivate' ) );
+        register_uninstall_hook( __FILE__, array( 'VS_Slider', 'uninstall' ) );
+
         $vs_slider = new VS_Slider();
+
     }
     
