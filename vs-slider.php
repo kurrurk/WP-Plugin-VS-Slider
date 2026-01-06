@@ -40,6 +40,9 @@
 
                 $this->define_constants();
 
+                require_once( VS_SLIDER_PATH . 'post-types/class.vs-slider-cpt.php' );
+                $VS_Slider_Post_Type = new VS_Slider_Post_Type();
+
             }
 
             public function define_constants() {
@@ -59,6 +62,7 @@
 
             public static function deactivate() {
                 flush_rewrite_rules();
+                unregister_post_type( 'vs-slider' );
             }    
 
             public static function uninstall() {
