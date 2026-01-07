@@ -10,6 +10,7 @@
             public function __construct() {
 
                 add_action( 'init', array( $this, 'create_post_type' ) );
+                add_action( 'add_meta_boxes', array($this, 'add_meta_boxes' ) );
 
             }
 
@@ -37,11 +38,26 @@
                         'exclude_from_search' => false,
                         'publicly_queryable' => true,
                         'show_in_rest' => true,
-                        'manu_icon' => 'dashicons-images-alt2'
+                        'manu_icon' => 'dashicons-images-alt2',
+                        //'register_meta_box_cd' => array( $this, 'add_meta_boxes' ),
                     )
                 );
 
             }
-
+            
+            public function add_meta_boxes() {
+                add_meta_box (
+                    'vs_slider_meta_box',
+                    'Link Options',
+                    array( $this, 'add_inner_meta_box' ),
+                    'vs-slider',
+                    'normal',
+                    'high'
+                );
+            }
+            
+            public function add_inner_meta_box($post) {
+                
+            }
         }
     }
