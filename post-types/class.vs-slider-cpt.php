@@ -38,7 +38,7 @@
                         'exclude_from_search' => false,
                         'publicly_queryable' => true,
                         'show_in_rest' => true,
-                        'manu_icon' => 'dashicons-images-alt2',
+                        'menu_icon' => 'dashicons-images-alt2',
                         //'register_meta_box_cd' => array( $this, 'add_meta_boxes' ),
                     )
                 );
@@ -57,7 +57,7 @@
             }
             
             public function add_inner_meta_box($post) {
-                
+                require_once( VS_SLIDER_PATH . 'views/vs-slider_metabox.php' );
             }
         }
     }
