@@ -12,6 +12,9 @@
                 add_action( 'init', array( $this, 'create_post_type' ) );
                 add_action( 'add_meta_boxes', array($this, 'add_meta_boxes' ) );
                 add_action( 'save_post', array( $this, 'save_post'), 10, 2 );
+                add_filter( 'manage_vs-slider_posts_columns', array( $this, 'vs_slider_cpt_columns' ));
+                add_action( 'manage_vs-slider_posts_custom_column', array( $this, 'vs_slider_custom_columns' ), 10, 2 );
+                add_filter( 'manage_edit-vs-slider_sortable_columns', array( $this, 'vs_slider_sortable_columns' ) );
 
             }
 
@@ -94,6 +97,39 @@
                     update_post_meta( $post_id, 'vs-slider_link_url', $new_link_url, $old_link_url );
                 }
 
+            }
+
+            public function vs_slider_cpt_columns( $columns ) {
+
+                $last = array_slice($columns, -1);
+                array_pop($columns);
+
+                $columns['vs_slider_link_text'] = esc_html__('Link Text', 'vs-slider');
+                $columns['vs_slider_link_url'] = esc_html__('Link URL', 'vs-slider');
+
+                $columns[array_keys($last)[0]] = $last[array_keys($last)[0]];
+
+                return $columns;
+
+            }
+
+            public function vs_slider_custom_columns( $column, $post_id) {
+                switch ( $column ) {
+                    case 'vs_slider_link_text':
+                        $link_text = get_post_meta( $post_id, 'vs-slider_link_text', true );
+                        echo esc_html( $link_text );
+                        break;
+                    case 'vs_slider_link_url':
+                        $link_url = get_post_meta( $post_id, 'vs-slider_link_url', true );
+                        echo esc_url( $link_url );
+                        break;
+                }
+            }
+
+            public function vs_slider_sortable_columns( $columns ) {
+                $columns['vs_slider_link_text'] = 'vs_slider_link_text';
+                //$columns['vs_slider_link_url'] = 'vs_slider_link_url';
+                return $columns;
             }
         }
     }
