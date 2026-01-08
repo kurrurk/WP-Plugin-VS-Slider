@@ -106,7 +106,7 @@
             public function vs_slider_settings_page() {
                 ?>
 
-                    <p><?= esc_html__('This is the settings page for VS Slider.', 'vs-slider'); ?></p>
+                    require_once( VS_SLIDER_PATH . 'views/settings-page.php' );
 
                 <?php
             }
