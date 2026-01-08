@@ -40,6 +40,8 @@
 
                 $this->define_constants();
 
+                require_once( VS_SLIDER_PATH . 'functions/functions.php' );
+
                 add_action('admin_menu', array( $this, 'add_menu'));
 
                 require_once( VS_SLIDER_PATH . 'post-types/class.vs-slider-cpt.php' );

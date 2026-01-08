@@ -37,6 +37,7 @@
                     wp_enqueue_script( 'vs-slider-options-js' );
                     wp_enqueue_style( 'vs-slider-main-css' );
                     wp_enqueue_style( 'vs-slider-style-css' );
+                    vs_slider_option();
                 return ob_get_clean();
             }
 

@@ -1,5 +1,5 @@
 <h3><?= (!empty($content)) ? esc_html($content) : esc_html(VS_Slider_Settings::$options['vs_slider_title']); ?></h3>
-<div class="vs-slider flexslider">
+<div class="vs-slider flexslider <?= (isset(VS_Slider_Settings::$options['vs_slider_style'])) ? esc_attr(VS_Slider_Settings::$options['vs_slider_style']) : 'style-1'; ?>">
     <ul class="slides">
         <?php 
         
@@ -20,7 +20,13 @@
                 $button_url = get_post_meta( get_the_ID(), 'vs-slider_link_url', true );
         ?>
             <li>
-                <?php the_post_thumbnail('full', array('class' => 'img-fluid')); ?>
+                <?php 
+                    if (has_post_thumbnail()) {
+                        the_post_thumbnail('full', array('class' => 'img-fluid'));
+                    } else {
+                        echo vs_slider_get_placeholder_image();
+                    }
+                ?>
                 <div class="vss-sontainer">
                     <div class="slider-details-container">
                         <div class="wrapper">
