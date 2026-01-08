@@ -5,6 +5,7 @@
     $link_url = get_post_meta( $post->ID, 'vs-slider_link_url', true );
 ?>
 <table class="form-table mv-slider-metabox">
+    <input type="hidden" name="vs-slider_nonce" value="<?= wp_create_nonce( 'vs-slider_nonce' ); ?>">
     <tr>
         <th>
             <label for="vs-slider_link_text">Link Text</label>

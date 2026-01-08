@@ -63,6 +63,26 @@
 
             public function save_post( $post_id ) {
 
+                if ( ! isset( $_POST['vs-slider_nonce'] )) {
+
+                    if (! wp_verify_nonce( $_POST['vs-slider_nonce'], 'vs-slider_nonce' ) ) {
+                        return;
+                    }
+
+                } 
+
+                if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+                    return;
+                }
+
+                if ( isset($_POST['post_type']) && $_POST['post_type'] != 'vs-slider' ) {
+                    if ( ! current_user_can( 'edit_page', $post_id ) ) {
+                        return;
+                    } elseif ( ! current_user_can( 'edit_post', $post_id ) ) {
+                        return;
+                    }
+                }
+
                 if ( isset($_POST['action']) && $_POST['action'] === 'editpost' ) {
 
                     $old_link_text = get_post_meta( $post_id, 'vs-slider_link_text', true );
