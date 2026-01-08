@@ -149,6 +149,7 @@
                     switch ($key) {
                         case 'vs_slider_title':
                             if ( empty( $value ) ) {
+                                add_settings_error('vs_slider_options', 'vs_slider_message', 'The title field cannot be empty', 'error' );
                                 $value = 'Please, type some text.';
                             }
                             $new_input[$key] = sanitize_text_field( $value );

@@ -108,6 +108,13 @@
 
             public function vs_slider_settings_page() {
 
+                    if ( ! current_user_can( 'manage_options' ) ) {
+                        return;
+                    }
+                    if ( isset( $_GET['settings-updated'] ) ) {
+                        add_settings_error( 'vs_slider_options', 'vs_slider_message', 'Settings Saved', 'updated' );
+                    }
+                    settings_errors( 'vs_slider_options' );
                     require_once( VS_SLIDER_PATH . 'views/settings-page.php' );
 
             }
