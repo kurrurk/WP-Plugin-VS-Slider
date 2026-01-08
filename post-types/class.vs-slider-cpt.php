@@ -33,7 +33,7 @@
                         'supports' => array( 'title', 'editor', 'thumbnail' ),   
                         'herearchial' => false,   
                         'show_ui' => true,
-                        'show_in_menu' => true,
+                        'show_in_menu' => false,
                         'menu_position' => 5,
                         'show_in_admin_bar' => true,
                         'show_in_nav_menus' => true,
@@ -66,7 +66,7 @@
 
             public function save_post( $post_id ) {
 
-                if ( ! isset( $_POST['vs-slider_nonce'] )) {
+                if ( isset( $_POST['vs-slider_nonce'] )) {
 
                     if (! wp_verify_nonce( $_POST['vs-slider_nonce'], 'vs-slider_nonce' ) ) {
                         return;

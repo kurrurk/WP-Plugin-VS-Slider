@@ -40,6 +40,8 @@
 
                 $this->define_constants();
 
+                add_action('admin_menu', array( $this, 'add_menu'));
+
                 require_once( VS_SLIDER_PATH . 'post-types/class.vs-slider-cpt.php' );
                 $VS_Slider_Post_Type = new VS_Slider_Post_Type();
 
@@ -67,6 +69,46 @@
 
             public static function uninstall() {
                 // Uninstallation code here...
+            }
+
+            public function add_menu() {
+                add_menu_page( // add_theme_page // add_options_page
+                    'VS Slider Options',
+                    'VS Slider',
+                    'manage_options',
+                    'vs-slider-admin',
+                    array( $this, 'vs_slider_settings_page' ),
+                    'dashicons-images-alt2',
+                    10
+                );
+
+                add_submenu_page(
+                    'vs-slider-admin', // 'edit-comments.php' Example of existing parent slug
+                    'Manage Slides',
+                    'Manage Slides',
+                    'manage_options',
+                    'edit.php?post_type=vs-slider',
+                    null,
+                    null
+                );
+
+                add_submenu_page(
+                    'vs-slider-admin',
+                    'Add New Slide',
+                    'Add New Slide',
+                    'manage_options',
+                    'post-new.php?post_type=vs-slider',
+                    null,
+                    null
+                );
+            }
+
+            public function vs_slider_settings_page() {
+                ?>
+
+                    <p><?= esc_html__('This is the settings page for VS Slider.', 'vs-slider'); ?></p>
+
+                <?php
             }
 
         }
