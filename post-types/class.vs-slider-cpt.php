@@ -66,9 +66,9 @@
                 if ( isset($_POST['action']) && $_POST['action'] === 'editpost' ) {
 
                     $old_link_text = get_post_meta( $post_id, 'vs-slider_link_text', true );
-                    $new_link_text = sanitize_text_field( $_POST['vs-slider_link_text'] );
+                    $new_link_text = !empty(sanitize_text_field( $_POST['vs-slider_link_text'] )) ? sanitize_text_field( $_POST['vs-slider_link_text'] ) : 'Add some text';
                     $old_link_url = get_post_meta( $post_id, 'vs-slider_link_url', true );
-                    $new_link_url = sanitize_text_field( $_POST['vs-slider_link_url'] );
+                    $new_link_url = !empty(sanitize_text_field( $_POST['vs-slider_link_url'] ))  ? sanitize_text_field( $_POST['vs-slider_link_url'] ) : '#'; // esc_url_raw can also be used here
 
                     update_post_meta( $post_id, 'vs-slider_link_text', $new_link_text, $old_link_text );
                     update_post_meta( $post_id, 'vs-slider_link_url', $new_link_url, $old_link_url );
