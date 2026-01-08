@@ -45,6 +45,9 @@
                 require_once( VS_SLIDER_PATH . 'post-types/class.vs-slider-cpt.php' );
                 $VS_Slider_Post_Type = new VS_Slider_Post_Type();
 
+                require_once( VS_SLIDER_PATH . 'class.vs-slider-settings.php' );
+                $VS_Slider_Settings = new VS_Slider_Settings();
+
             }
 
             public function define_constants() {
@@ -104,11 +107,9 @@
             }
 
             public function vs_slider_settings_page() {
-                ?>
 
                     require_once( VS_SLIDER_PATH . 'views/settings-page.php' );
 
-                <?php
             }
 
         }
