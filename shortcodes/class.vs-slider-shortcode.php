@@ -25,12 +25,15 @@
                     $tag
                 ));
 
-                if ( !empty( $id)) {
+                if ( !empty($id)) {
 
                     $id = array_map( 'absint', explode( ',', $id ) );
-                    
+
                 }
 
+                ob_start();
+                    require( VS_SLIDER_PATH . 'views/vs-slider_shortcode.php' );
+                return ob_get_clean();
             }
 
         }
