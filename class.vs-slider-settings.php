@@ -50,7 +50,10 @@
                     'Slider Title',
                     array( $this, 'vs_slider_title_callBack' ),
                     'vs-slider-page2',
-                    'vs_slider_second_section'
+                    'vs_slider_second_section',
+                    array(
+                        'label_for' => 'vs_slider_title'
+                    )
                 );
 
                 add_settings_field(
@@ -58,7 +61,10 @@
                     'Display Bullets',
                     array( $this, 'vs_slider_bullets_callBack' ),
                     'vs-slider-page2',
-                    'vs_slider_second_section'
+                    'vs_slider_second_section',
+                    array(
+                        'label_for' => 'vs_slider_bullets'
+                    )
                 );
 
                 add_settings_field(
@@ -66,7 +72,14 @@
                     'Slider Style',
                     array( $this, 'vs_slider_style_callBack' ),
                     'vs-slider-page2',
-                    'vs_slider_second_section'
+                    'vs_slider_second_section',
+                    array(
+                        'items' => array(
+                            'style-1' => 'Style 1',
+                            'style-2' => 'Style 2'
+                        ),
+                        'label_for' => 'vs_slider_style'
+                    )
                 );
 
             }
@@ -79,7 +92,7 @@
             <?php
             }
 
-            public function vs_slider_title_callBack()
+            public function vs_slider_title_callBack( $args )
             {?>
                 <input 
                     type="text" 
@@ -90,7 +103,7 @@
             <?php
             }
 
-            public function vs_slider_bullets_callBack()
+            public function vs_slider_bullets_callBack( $args )
             {?>
                 <input 
                     type="checkbox" 
@@ -106,19 +119,18 @@
             <?php
             }
 
-            public function vs_slider_style_callBack()
+            public function vs_slider_style_callBack( $args )
             {?>
 
                 <select
                     name="vs_slider_options[vs_slider_style]" 
                     id="vs_slider_style"
                 >
-                    <option value="style-1"
-                        <?php isset(self::$options['vs_slider_style']) ? selected('style-1', self::$options['vs_slider_style'],true) : ''; ?>
-                    >Style 1</option>
-                    <option value="style-2"
-                        <?php isset(self::$options['vs_slider_style']) ? selected('style-2', self::$options['vs_slider_style'],true) : ''; ?>
-                    >Style 2</option>
+                    <?php foreach( $args['items'] as $style => $label ) : ?>
+                        <option value="<?= esc_attr( $style ); ?>"
+                            <?php isset(self::$options['vs_slider_style']) ? selected($style, self::$options['vs_slider_style'],true) : ''; ?>
+                        ><?= esc_html( $label ); ?></option>
+                    <?php endforeach; ?>
                 </select>                    
 
             <?php
