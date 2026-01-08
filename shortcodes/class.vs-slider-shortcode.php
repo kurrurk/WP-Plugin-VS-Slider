@@ -33,6 +33,10 @@
 
                 ob_start();
                     require( VS_SLIDER_PATH . 'views/vs-slider_shortcode.php' );
+                    wp_enqueue_script( 'vs-slider-main-jq' );
+                    wp_enqueue_script( 'vs-slider-options-js' );
+                    wp_enqueue_style( 'vs-slider-main-css' );
+                    wp_enqueue_style( 'vs-slider-style-css' );
                 return ob_get_clean();
             }
 

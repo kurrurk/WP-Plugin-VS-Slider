@@ -1,0 +1,113 @@
+/* Flex slider */
+.vs-slider {
+    position: relative;
+}
+
+.vs-slider.flexslider {
+    border: 0 !important;
+}
+
+.vs-slider .img-fluid {
+    max-width: 100%;
+    max-height: 500px;
+    height: auto;
+    object-fit: cover;
+}
+
+.vs-slider .vss-container {
+    max-width: 1140px;
+    width: 100%;
+    padding-right: 50px;
+    padding-left: 50px;
+    margin: 0 auto;
+}
+
+.vs-slider .flex-direction-nav {
+    display: none !important;
+}
+
+.vs-slider .flex-control-nav {
+    bottom: 10px !important;
+}
+
+.vs-slider .flex-direction-nav a {
+    height: 50px;
+}
+
+.vs-slider .slider-details-container {
+    color: #fff;
+    top: 50%;
+    transform: translateY(-50%);
+    position: absolute;
+}
+
+.vs-slider .slider-details-container .slider-title {
+    color: #fff;
+    font-wheight: 700;
+}
+
+.vs-slider .slider-details-container a {
+    color: #fff;
+    border-radius: 5px;
+    text-transform: uppercase;
+    padding: 5px 25px;
+    display: inline-block;
+    text-decoration: none;
+}    
+
+.vs-slider .slider-details-container a:hover {
+    color: #fff;
+}
+
+.vs-slider.flexslider .slides {
+    padding: 0 !important;
+}
+
+.vs-slider.flexslider .slides > li{
+    position: relative !important;
+}
+
+.vs-slider.flexslider .slides > li .wrapper {
+    padding: 10px;
+}
+
+.vs-slider .flex-control-paging li a.flex-active {
+    width: 25px !important;
+}
+
+.vs-slider .flex-control-nav li {
+    margin: 0 3px !important;
+}
+
+/* Design Options */
+
+/* Style 1 */
+
+.vs-slider.style-1 .slider-details-container .link {
+    background-color: #1d4971;
+}
+
+.vs-slider.style-1 .flex-control-paging li a.flex-active {
+    background: rgb(182,2,2) !important;
+}
+
+.vs-slider.style-1 .flex-control-paging li a {
+    background: rgb(247,247,247);
+}
+
+/* Style 2 */
+
+.vs-slider.style-2 .slider-details-container .link {
+    background-color: #71481d;
+}
+
+.vs-slider.style-2 .flex-control-paging li a.flex-active {
+    background: rgb(2,182,14) !important;
+}
+
+.vs-slider.style-2 .flex-control-paging li a {
+    background: rgb(247,247,247);
+    height: 10px;
+    width: 15px;
+    border-radius: 0;
+}

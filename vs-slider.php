@@ -51,6 +51,8 @@
                 require_once( VS_SLIDER_PATH . 'shortcodes/class.vs-slider-shortcode.php' );
                 $VS_Slider_Shortcode = new VS_Slider_Shortcode();
 
+                add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts'), 999 );
+                add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_scripts'), 999 );
             }
 
             public function define_constants() {
@@ -120,6 +122,60 @@
                     settings_errors( 'vs_slider_options' );
                     require_once( VS_SLIDER_PATH . 'views/settings-page.php' );
 
+            }
+
+            public function register_scripts() {
+
+                wp_register_script( 
+                    'vs-slider-main-jq', 
+                    VS_SLIDER_URL . 'vendor/flexslider/jquery.flexslider-min.js', 
+                    array( 'jquery' ), 
+                    filemtime( VS_SLIDER_PATH . 'vendor/flexslider/jquery.flexslider-min.js' ), 
+                    true 
+                );
+
+                wp_register_script( 
+                    'vs-slider-options-js', 
+                    VS_SLIDER_URL . 'vendor/flexslider/flexslider.js', 
+                    array(), 
+                    filemtime( VS_SLIDER_PATH . 'vendor/flexslider/jquery.flexslider-min.js' ), 
+                    true 
+                );
+
+                wp_register_style( 
+                    'vs-slider-main-css', 
+                    VS_SLIDER_URL . 'vendor/flexslider/flexslider.css', 
+                    array(), 
+                    filemtime( VS_SLIDER_PATH . 'vendor/flexslider/flexslider.css' ), 
+                    'all' 
+                );
+
+                wp_register_style( 
+                    'vs-slider-style-css', 
+                    VS_SLIDER_URL . 'assets/css/frontend.css', 
+                    array(), 
+                    filemtime( VS_SLIDER_PATH . 'assets/css/frontend.css' ), 
+                    'all' 
+                );
+
+            }
+
+            public function register_admin_scripts() {
+
+                global $typenow; // global $pagenow;
+
+                if ($typenow == 'vs-slider') { // || $pagenow == 'post-new.php' || $pagenow == 'post.php'
+
+                    wp_enqueue_style( 
+                        'vs-slider-admin-css', 
+                        VS_SLIDER_URL . 'assets/css/admin.css', 
+                        array(), 
+                        filemtime( VS_SLIDER_PATH . 'assets/css/admin.css' ), 
+                        'all' 
+                    );
+
+                }
+                
             }
 
         }
