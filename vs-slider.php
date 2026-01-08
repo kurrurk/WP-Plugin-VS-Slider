@@ -48,6 +48,9 @@
                 require_once( VS_SLIDER_PATH . 'class.vs-slider-settings.php' );
                 $VS_Slider_Settings = new VS_Slider_Settings();
 
+                require_once( VS_SLIDER_PATH . 'shortcodes/class.vs-slider-shortcode.php' );
+                $VS_Slider_Shortcode = new VS_Slider_Shortcode();
+
             }
 
             public function define_constants() {
