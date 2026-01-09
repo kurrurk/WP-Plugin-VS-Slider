@@ -78,7 +78,17 @@
             }    
 
             public static function uninstall() {
-                // Uninstallation code here...
+                delete_option( 'vs_slider_options' );
+    
+                $posts = get_posts( array(
+                    'post_type' => 'vs-slider',
+                    'numberposts' => -1,
+                    'post_status' => 'any'
+                ) );
+
+                foreach ( $posts as $post ) {
+                    wp_delete_post( $post->ID, true );
+                }
             }
 
             public function add_menu() {
